@@ -1,5 +1,20 @@
-/* src/styles/TwitterCard.css */
-.bg-black {
-    background-color: black;
-  }
-  
+.siguiendo { 
+  width: 70px; 
+  height: 25px; 
+  font-size: 12px; 
+  background-color: white; 
+  color: black;
+  border-color: white;
+}
+
+.siguiendo:hover {
+  background-color: red;
+}
+
+.siguiendo:hover {
+  background-color: red;
+}
+
+.siguiendo.seguir:hover {
+  background-color: blue;
+}

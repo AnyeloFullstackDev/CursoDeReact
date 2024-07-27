@@ -1,6 +1,9 @@
 import { Container, Button, Row, Col  } from 'react-bootstrap';
+import "../styles/TwitterCard.css"
 
 export const TwitterFollowCard = ({ isFollowing, userName, children, image  }) => {
+    const text = isFollowing ? 'Siguiendo' : 'Seguir'
+    const buttonClassName = isFollowing ? 'siguiendo' : 'siguiendo seguir'
     
     return (
         <Container fluid>
@@ -25,7 +28,7 @@ export const TwitterFollowCard = ({ isFollowing, userName, children, image  }) =
                             </div>
                             <span className="text-light" style={{ fontSize: '10px' }}>@{userName}</span>
                         </div>
-                        <Button className="ms-2"  size="sm" style={{ width: '60px', height: '25px', fontSize: '12px', backgroundColor: 'white', color: 'black', borderColor: 'white' }} >Follow</Button>
+                        <Button className={buttonClassName}  size="sm">{text}</Button>
                     </div>
                 </Col>
             </Row>
