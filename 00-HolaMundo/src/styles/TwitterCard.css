@@ -1,5 +1,5 @@
-.siguiendo { 
-  width: 70px; 
+.seguir { 
+  width: 50px; 
   height: 25px; 
   font-size: 12px; 
   background-color: white; 
@@ -7,14 +7,19 @@
   border-color: white;
 }
 
-.siguiendo:hover {
-  background-color: red;
+.seguir:hover {
+  background-color: rgb(68, 68, 68);
+}
+
+.siguiendo { 
+  width: 100px; 
+  height: 25px; 
+  font-size: 12px; 
+  background-color: white;
+  color: black;
+  border-color: white;
 }
 
 .siguiendo:hover {
   background-color: red;
-}
-
-.siguiendo.seguir:hover {
-  background-color: blue;
 }

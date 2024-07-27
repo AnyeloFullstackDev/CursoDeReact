@@ -1,10 +1,30 @@
-import { Container, Button, Row, Col  } from 'react-bootstrap';
+import { useState } from 'react';
+import { Container, Button, Row, Col } from 'react-bootstrap';
 import "../styles/TwitterCard.css"
 
-export const TwitterFollowCard = ({ isFollowing, userName, children, image  }) => {
-    const text = isFollowing ? 'Siguiendo' : 'Seguir'
-    const buttonClassName = isFollowing ? 'siguiendo' : 'siguiendo seguir'
-    
+export const TwitterFollowCard = ({ initialIsFollowing, userName, image, children }) => {
+    const [isFollowing, setIsFollowing] = useState(initialIsFollowing);
+    const [isHovered, setIsHovered] = useState(false);
+
+    const handleClick = () => {
+        setIsFollowing(prevIsFollowing => {
+            const newIsFollowing = !prevIsFollowing;
+            return newIsFollowing;
+        });
+    };
+
+    const handleMouseEnter = () => {
+        setIsHovered(true);
+    };
+
+    const handleMouseLeave = () => {
+        setIsHovered(false);
+    };
+
+    const buttonText = isHovered ? (isFollowing ? "Dejar de seguir" : "Seguir") : (isFollowing ? "Siguiendo" : "Seguir");
+
+    const buttonClass = isFollowing ? "siguiendo" : "seguir";
+
     return (
         <Container fluid>
             <Row>
@@ -28,7 +48,15 @@ export const TwitterFollowCard = ({ isFollowing, userName, children, image  }) =
                             </div>
                             <span className="text-light" style={{ fontSize: '10px' }}>@{userName}</span>
                         </div>
-                        <Button className={buttonClassName}  size="sm">{text}</Button>
+                        <Button
+                            className={buttonClass}
+                            size="sm"
+                            onClick={handleClick}
+                            onMouseEnter={handleMouseEnter}
+                            onMouseLeave={handleMouseLeave}
+                        >
+                            {buttonText}
+                        </Button>
                     </div>
                 </Col>
             </Row>
