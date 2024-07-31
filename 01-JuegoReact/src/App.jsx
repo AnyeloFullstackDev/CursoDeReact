@@ -52,27 +52,38 @@ function App() {
     return null
   }
 
+  const checkEndGame = (newBoard) => {
+    return newBoard.every((square) => square !== null)
+  }
+
   const updateBoard = (index) => {
     const newBoard = [...board]
     if (newBoard[index] === Turns.O || newBoard[index] === Turns.X || winner) {
       newBoard[index]
     }else{
-    newBoard[index] = turn
-    setBoard(newBoard)
-    const newTurn = turn === Turns.X ? Turns.O : Turns.X
-    setTurn(newTurn)
-    const newWinner = checkWinner(newBoard)
-    if (newWinner){
-      setWinner(newWinner)
-      alert(`El ganador es ${newWinner}`)
+      newBoard[index] = turn
+      setBoard(newBoard)
+      const newTurn = turn === Turns.X ? Turns.O : Turns.X
+      setTurn(newTurn)
+      const newWinner = checkWinner(newBoard)
+      if (newWinner){
+        setWinner(newWinner)
+      } else if (checkEndGame(newBoard)) {
+        setWinner(false)
+      }
+    }
+  }
 
-    }
-    }
+  const reset = () => {
+    setWinner(null)
+    setBoard(Array(9).fill(null))
+    setTurn(Turns.X)
   }
 
   return (
     <main className='board'>
       <h1>Tic Tac toe</h1>
+    <button onClick={reset}>Resset Game</button>
       <section className='game'>
         {
           board.map((_, index) => {
@@ -89,6 +100,25 @@ function App() {
         <Square isSelected={turn === Turns.X}>{Turns.X}</Square>
         <Square isSelected={turn === Turns.O}>{Turns.O}</Square>
       </section>
+
+      {
+          winner !== null && (
+            <section className='winner'>
+              <div> 
+                <h2>
+                  {winner === false ? 'Empate' : 'Ganó'}
+                </h2>
+                <header className='win'>
+                  {winner && <Square>{winner}</Square>}
+                </header>
+                <footer>
+                  <button onClick={() => reset()}>Empezar de Nuevo</button>
+                </footer>
+              </div>
+            </section>
+          )
+        }
+
     </main>
   )
 }
