@@ -1,6 +1,6 @@
  export const Turns = {
-    X: '💙',
-    O: '❤️️'
+    X: 'X',
+    O: 'O'
   }
   
 export const COMBOS_WINNER = [
